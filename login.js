@@ -7,12 +7,11 @@ addEventListener("click", function(e){
     const mobileNumberValueConverted = parseInt(mobileNumberValue)
     const pinNumberValue = document.getElementById("pin-number").value
     const pinNumberValueConverted = parseInt(pinNumberValue)
-    console.log(mobileNumberValueConverted, pinNumberValueConverted)
 
     if(mobileNumberValueConverted === mobileNumber && pinNumberValueConverted === pinNumber){
-        console.log("All Values Matched")
+        window.location.href="./home.html"
     }
     else{
-        console.log("Invalid Credintials")
+        alert("Invalid credentials")
     }
 })
