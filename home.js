@@ -1,3 +1,6 @@
+
+// Add money feature 
+
 const validPin = 9988
 
 document.getElementById("add-money-btn").addEventListener("click", function(e){
@@ -18,6 +21,32 @@ if (pin !== validPin){
 }
 const totalNewAvailableBalance = amount + availableBalance
 document.getElementById("available-balance").innerText = totalNewAvailableBalance
+})
+
+// Cash-Out Money Feature 
+
+document.getElementById("withdraw-btn").addEventListener("click", function(e){
+    e.preventDefault()
+    
+    const amount = parseInt(document.getElementById("withdraw-amount").value)
+
+    const availableBalance = parseInt(document.getElementById("available-balance").innerText)
+    const agentNumber = document.getElementById("agent-number").value
+    const withdrawPin = parseInt(document.getElementById("withdraw-pin").value)
+
+    if (agentNumber.length <11){
+        alert("Please provide a valid agent number")
+        return;
+    }
+    if (withdrawPin !== validPin){
+        alert("Please provide a valid pin number")
+    }
+
+
+    const totalNewAvailableBalance = availableBalance - amount
+    console.log(totalNewAvailableBalance)
+    document.getElementById("available-balance").innerText = totalNewAvailableBalance
+
 })
 
 
