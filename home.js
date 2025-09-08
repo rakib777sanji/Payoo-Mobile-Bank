@@ -1,14 +1,25 @@
 
-// Add money feature 
 
 const validPin = 9988
+
+// functions to get input values 
+
+function getInputValuenumber (id){
+    const inputField = document.getElementById(id)
+    const inputfieldvalue = inputField.value
+    const inputFieldValueNumber = parseInt(inputfieldvalue)
+    return inputFieldValueNumber
+}
+
+
+// Add money feature 
 
 document.getElementById("add-money-btn").addEventListener("click", function(e){
 e.preventDefault()
 const bank = document.getElementById("bank").value
 const accountNumber = document.getElementById("account-number").value
-const amount = parseInt(document.getElementById("add-amount").value)
-const pin = parseInt(document.getElementById("add-pin").value)
+const amount = getInputValuenumber ("add-amount")
+const pin = getInputValuenumber ("add-pin")
 const availableBalance = parseInt(document.getElementById("available-balance").innerText)
 console.log(amount, availableBalance)
 if (accountNumber.length <13) {
@@ -28,11 +39,11 @@ document.getElementById("available-balance").innerText = totalNewAvailableBalanc
 document.getElementById("withdraw-btn").addEventListener("click", function(e){
     e.preventDefault()
     
-    const amount = parseInt(document.getElementById("withdraw-amount").value)
+    const amount = getInputValuenumber("withdraw-amount")
 
     const availableBalance = parseInt(document.getElementById("available-balance").innerText)
     const agentNumber = document.getElementById("agent-number").value
-    const withdrawPin = parseInt(document.getElementById("withdraw-pin").value)
+    const withdrawPin = getInputValuenumber("withdraw-pin")
 
     if (agentNumber.length <11){
         alert("Please provide a valid agent number")
