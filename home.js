@@ -33,6 +33,17 @@ function getInnerText (id){
         const availAblebalanceElement = document.getElementById("available-balance")
         availAblebalanceElement.innerText = value
     }
+
+    ////////******** */ function to toggle *////////***** */ 
+    function handleToggle(id){
+     const forms = document.getElementsByClassName("form")
+   for (const form of forms){
+    form.style.display = "none"
+   }
+   document.getElementById(id).style.display = "block"
+    }
+
+
 //////******** Add money feature ///////******/
 
 document.getElementById("add-money-btn").addEventListener("click", function(e){
@@ -88,12 +99,25 @@ document.getElementById("withdraw-btn").addEventListener("click", function(e){
 
 // //////*******Toggling Feature ///**********/
 document.getElementById("add-mny-btn").addEventListener("click", function(){
-    document.getElementById("cash-out-parent").style.display = "none"
-    document.getElementById("add-money-parent").style.display = "block"
+    handleToggle("add-money-parent")
 })
 
 
 document.getElementById("cash-out-button").addEventListener("click", function(){
-    document.getElementById("add-money-parent").style.display = "none"
-    document.getElementById("cash-out-parent").style.display = "block"
+
+      handleToggle("cash-out-parent")
 })
+
+document.getElementById("transfer-btn").addEventListener("click", function(){
+
+      handleToggle("transfer-money-parent")
+})
+
+document.getElementById("bonus-btn").addEventListener("click", function(){
+    handleToggle("get-bonus-parent")
+})
+
+document.getElementById("pay-bill-btn").addEventListener("click", function(){
+    handleToggle("pay-bill-parent")
+})
+
