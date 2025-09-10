@@ -3,6 +3,8 @@
 
 const validPin = 9988
 
+const transactionData = []
+
 ///////******* functions to get input values ///////*******/
 
 function getInputValuenumber (id){
@@ -69,6 +71,12 @@ e.preventDefault()
 const bank = document.getElementById("bank").value
 const accountNumber = document.getElementById("account-number").value
 const amount = getInputValuenumber ("add-amount")
+
+if(amount < 100) {
+    alert("Invalid Amount")
+    return;
+}
+
 const pin = getInputValuenumber ("add-pin")
 
 const availableBalance = getInnerText("available-balance")
@@ -85,6 +93,15 @@ if (pin !== validPin){
 
 const totalNewAvailableBalance = amount + availableBalance
 setInnerText (totalNewAvailableBalance)
+
+const data = {
+    name :"Add Money",
+    date :new Date().toLocaleTimeString()
+}
+
+    transactionData.push(data)
+    console.log(transactionData)
+
 })
 
 //******* */ Cash-Out Money Feature ///////****** */
@@ -95,6 +112,12 @@ document.getElementById("withdraw-btn").addEventListener("click", function(e){
     const amount = getInputValuenumber("withdraw-amount")
 
     const availableBalance = getInnerText("available-balance")
+
+     if (amount < 100 || amount > availableBalance){
+        alert("Invalid Amount")
+        return;
+     }
+
     const agentNumber = document.getElementById("agent-number").value
     const withdrawPin = getInputValuenumber("withdraw-pin")
 
@@ -111,6 +134,48 @@ document.getElementById("withdraw-btn").addEventListener("click", function(e){
     const totalNewAvailableBalance = availableBalance - amount
     console.log(totalNewAvailableBalance)
     setInnerText (totalNewAvailableBalance)
+
+   const data = {
+    name :"Cash Out",
+    date :new Date().toLocaleTimeString()
+}
+
+    transactionData.push(data)
+    console.log(transactionData)
+
+
+})
+
+//  **/////// transaction section **////////
+
+
+document.getElementById("transaction-btn").addEventListener("click", function(){
+
+      const transactionContainer = document.getElementById("transaction-container")
+      transactionContainer.innerText = ""
+
+      for (const data of transactionData) {
+        const div = document.createElement("div");
+        div.innerHTML=`
+              <div class="bg-white rounded-xl p-4 flex justify-between items-center mt-3">
+                  <div class="flex items-center">
+            <div class="p-3 rounded-full bg-[#f4f5f7]">
+            <img src="./assets/wallet1.png" class="mx-auto" alt="">
+            </div>
+            <div class="ml-3">
+                  <h1>${data.name}</h1>
+                  <p>${data.date}</p>
+            </div>
+      </div>
+
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+   </div>
+
+        `
+
+         transactionContainer.appendChild(div)
+
+      }
 
 })
 
@@ -156,6 +221,15 @@ document.getElementById("pay-bill-btn").addEventListener("click", function(){
     handleToggle("pay-bill-parent")
 
       handleTogglebutton("pay-bill-btn")
+
+})
+
+
+document.getElementById("transaction-btn").addEventListener("click", function(){
+    
+    handleToggle("transaction-parent")
+
+      handleTogglebutton("transaction-btn")
 
 })
 
